@@ -1,18 +1,25 @@
-import { Box,useTheme } from "@mui/material";
-import { DataGrid,GridToolbar } from "@mui/x-data-grid";
+import { Box,Typography,useTheme } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/nockData";
+import { mockDataInvoices } from "../../data/nockData";
 import Header from "../../component/Header";
 
-const Contacts = () => {
+const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID", flex:0.5 },
+    { field: "id", headerName: "ID"},
     {
       field: "name",
       headerName: "Name",
       flex: 1,
+      renderCell:(params)=>{
+        return(
+            <Typography variant="h5" color={colors.greenAccent[500]}>
+                {params.row.name}
+            </Typography>
+        )
+      }
     },
     {
       field: "email",
@@ -20,10 +27,15 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      flex:0.5,
+      field: "cost",
+      headerName: "Cost",
+      renderCell:(params)=>{
+        return(
+            <Typography variant="h5" color={colors.greenAccent[500]}>
+                {params.row.cost}
+            </Typography>
+        )
+      }
     },
     {
       field: "phone",
@@ -31,31 +43,15 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "date",
+      headerName: "Date",
       flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 0.5,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 0.5,
-    },
-    {
-      field: "registrarId",
-      headerName: "Registrar Id",
-      flex: 0.5,
-      type: "number",
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="CONTACT" subtitle="Managing our contact infrionsion" />
+      <Header title="INVOICES" subtitle="List of invoice Balances" />
       <Box
         m="40px 0 0 0"
         height="70vh"
@@ -88,10 +84,10 @@ const Contacts = () => {
           }
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataContacts} columns={columns} components={{Toolbar:GridToolbar}} />
+        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default Contacts;
+export default Invoices;
