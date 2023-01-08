@@ -10,6 +10,7 @@ import Invoices from "./sences/invoices";
 import Form from "./sences/form";
 import FAQ from "./sences/faq";
 import Bar from "./sences/bar";
+import Pie from "./sences/pie";
 
 
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/form" element={<Form />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/bar" element={<Bar />} />
+              <Route path="/pie" element={<Pie />} />
               {/* <Route path="/calendar" element={<Calendar />} /> */}
              {/* <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
